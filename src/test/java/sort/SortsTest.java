@@ -247,13 +247,18 @@ public class SortsTest {
     assertTrue(sameElements(sorted, orig, start, end));
   }
 
+  
+  
   /** Returns true if and only if A[start..end] is sorted in ascending order.
    * Preconditon: A is not null, and 0 <= start <= end <= A.length.
    **/
   private static boolean isSorted(int[] A, int start, int end) {
-    // TODO - Lab 2
-    return false;
-  }
+      for (int i = start+1; i < end; i++){
+        if(A[i] < A[i - 1]) return false;
+      }
+      return true;
+    }
+
 
 
   /** Returns true if and only if A[start..end] and B[start..end] contain
@@ -262,17 +267,31 @@ public class SortsTest {
    *    0 <= start <= end <= A.length = B.length 
    **/
   public static boolean sameElements(int[] A, int[] B, int start, int end) {
-    // TODO - Lab 2
-    return false;
+    HashMap<Integer,Integer> hashmap = new HashMap<Integer,Integer>();
+      for (int i = start; i < end; i++){
+        hashmap.put(i, A[i]);
+      }
+      for (int j = start; j < end; j++){
+        if (hashmap.containsValue(B[j]) != true){
+          return false;
+        } 
+      }
+      return true;
   }
+  
 
 
   /** Returns true if and only if A[start..end] is partitioned around the
    * element at A[pi].
    * In other words, A[start..pi] <= A[pi] <= A[pi+1..end] */
   public static boolean isPartitioned(int[] A, int start, int end, int pi) {
-    // TODO - Lab 2
-    return false;
+      for(int i = start; i < pi; i++){
+        if(A[i] > A[pi]) return false;
+      }
+      for(int j = pi+1; j < end; j++){
+        if(A[j] < A[pi]) return false;
+      }
+    return true;
   }
 
 
